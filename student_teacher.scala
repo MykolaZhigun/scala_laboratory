@@ -1,3 +1,5 @@
+import scala.util.Random
+
 class Address(private val city: String, private val region: String) {
   override def toString: String = s"$city, $region"
 }
@@ -16,22 +18,24 @@ class Student(name: String, surname: String, age: Int, address: Address)
 
   def printStudentInfo(): Unit = {
     val humanInfo = super.toString()
-    println(s"$humanInfo\n")
+    println(s"$humanInfo")
+
+    val random = new Random()
+    val grades = List.fill(5)(random.nextInt(5)+1)
+
+    val gradesString = "Оценки: " + grades.mkString(", ")
+    println(s"$gradesString\n")
   }
 }
 
-
 class Teacher(name: String, surname: String, age: Int, address: Address)
-  extends Human(name, surname, age, address)
-  {
+  extends Human(name, surname, age, address) {
 
-    def printTeacherInfo(): Unit = {
-      val teacherInfo = super.toString()
-      println(s"$teacherInfo")
-    }
+  def printTeacherInfo(): Unit = {
+    val teacherInfo = super.toString()
+    println(s"$teacherInfo")
+  }
 }
-
-
 
 object Main extends App {
   val addressHuman = new Address("Kherson", "Kherson Region")
